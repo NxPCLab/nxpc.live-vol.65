@@ -1,6 +1,7 @@
-html{
+html {
   overflow-x: hidden;
 }
+
 body {
   background-color: white;
   /*justify-content: center;*/
@@ -20,7 +21,7 @@ body {
   z-index: -1;
 }
 
-.bg-video{
+.bg-video {
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -39,6 +40,7 @@ body {
   padding-left: 20px;
   padding-right: 20px;
   margin: 0 auto;
+  mix-blend-mode: normal;
 }
 
 .keyvisual-container {
@@ -107,9 +109,10 @@ h4 {
 
 p,
 span {
-  background-color: white;
-  color: black;
+  background-color: blue;
+  color: white;
   display: block;
+  mix-blend-mode: normal;
 }
 
 h1 {
@@ -131,7 +134,7 @@ h3 {
 }
 
 p {
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-family: "Chivo Mono", monospace;
 }
 
@@ -140,6 +143,7 @@ p {
   background-color: yellow;
   color: blue;
 }
+
 .external-link:hover {
   background-color: blue;
   color: white;
@@ -178,13 +182,14 @@ p {
   flex-direction: row;
 }
 
-.performer-detail p{
+.performer-detail p {
   position: absolute;
   text-align: right;
   bottom: 0;
   right: 0;
   width: 90%;
 }
+
 .performer-detail img {
   display: inline-block;
   height: 300px;
