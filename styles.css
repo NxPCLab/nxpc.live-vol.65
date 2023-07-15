@@ -40,7 +40,7 @@ body {
   padding-left: 20px;
   padding-right: 20px;
   margin: 0 auto;
-  mix-blend-mode: normal;
+  mix-blend-mode: multiply;
 }
 
 .keyvisual-container {
