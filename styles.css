@@ -20,13 +20,14 @@ body {
   z-index: -1;
 }
 
-img{
+.bg-video{
   width: 100vw;
   height: 100vh;
   position: fixed;
   top: 0%;
   left: 0%;
   z-index: -1;
+  object-fit: cover;
 }
 
 .sp-section {
@@ -46,8 +47,7 @@ img{
   height: 100vh;
   border: 0%;
   padding: 5px;
-  mix-blend-mode: multiply;
-  writing-mode: vertical-rl;
+  mix-blend-mode: difference;
 }
 
 .toptitle {
