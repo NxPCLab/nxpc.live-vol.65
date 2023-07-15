@@ -9,7 +9,7 @@ let previousScrollY = 0;
 let velocity = 0;
 
 const seekVideoPlayback = (video) => {
-    const oneFrame = 1/15;
+    const oneFrame = 1 / 15;
     video.currentTime += oneFrame;
 }
 
@@ -18,7 +18,7 @@ const seekVideoRelative = (video) => {
     const pageHeight = document.body.scrollHeight;
     console.log(pageHeight);
     const posPerTime = duration / pageHeight;
-    video.currentTime = videoStartQue + posPerTime * window.scrollY; 
+    video.currentTime = videoStartQue + posPerTime * window.scrollY;
 }
 
 //スクロールのイベントハンドラー
@@ -39,22 +39,31 @@ window.onload = () => {
     video.load();
     video.currentTime = videoStartQue;
     console.log(
-        "video playhead = " + video.currentTime + "¥n" + 
+        "video playhead = " + video.currentTime + "¥n" +
         "isScrolling = " + isScrolling
     );
-    
+
 }
 
 setInterval(() => {
     velocity = window.scrollY - previousScrollY
     previousScrollY = window.scrollY;
     const video = document.querySelector("video");
-    if(isScrolling){
+    const blend_content = document.querySelectorAll('.sp-section');
+    if (isScrolling) {
         playbackVelocity = Math.abs(velocity / 10);
         console.log(playbackVelocity);
         video.playbackRate = playbackVelocity;
-        if(video.currentTime > videoEndQue) video.currentTime = videoStartQue;
+        if (video.currentTime > videoEndQue) video.currentTime = videoStartQue;
         video.play();
+
+        for (let i = 0; i < blend_content.length; i++) {
+            blend_content[i].style.mixBlendMode = "multiply";
+        }
+    } else {
+        for (let i = 0; i < blend_content.length; i++) {
+            blend_content[i].style.mixBlendMode = "multiply";
+        }
     }
-},50);
+}, 50);
 
