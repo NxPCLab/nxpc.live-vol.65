@@ -5,6 +5,9 @@ let pageY = 0;
 const videoStartQue = 8.25784;
 const videoEndQue = 14.968927;
 
+let previousScrollY = 0;
+let velocity = 0;
+
 const seekVideoPlayback = (video) => {
     const oneFrame = 1/15;
     video.currentTime += oneFrame;
@@ -20,16 +23,7 @@ const seekVideoRelative = (video) => {
 
 //スクロールのイベントハンドラー
 window.addEventListener("scroll", event => {
-    const video = document.querySelector("video");
     isScrolling = true;
-    video.playbackRate = 2;
-    if(video.currentTime > videoEndQue) video.currentTime = videoStartQue;
-    video.play();
-    console.log(
-        "video playhead = " + video.currentTime + "¥n" + 
-        "isScrolling = " + isScrolling
-    );
-    
 })
 
 window.addEventListener("scrollend", envet => {
@@ -50,9 +44,17 @@ window.onload = () => {
     );
     
 }
-/*
+
 setInterval(() => {
+    velocity = window.scrollY - previousScrollY
+    previousScrollY = window.scrollY;
     const video = document.querySelector("video");
-    if(isScrolling) seekVideoRelative(video);
+    if(isScrolling){
+        playbackVelocity = Math.abs(velocity / 10);
+        console.log(playbackVelocity);
+        video.playbackRate = playbackVelocity;
+        if(video.currentTime > videoEndQue) video.currentTime = videoStartQue;
+        video.play();
+    }
 },50);
-*/
+
