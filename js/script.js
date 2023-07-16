@@ -1,3 +1,60 @@
+function animateMixBlendMode(element, targetMode, duration) {
+  const startMode = window.getComputedStyle(element).mixBlendMode;
+
+  let currentTime = 0;
+  const increment = 16.67; // アニメーションの間隔（16.67ミリ秒）
+
+  const animate = setInterval(() => {
+    currentTime += increment / 1000; // 秒単位に変換
+
+    // 現在の進行度合いに応じてmix-blend-modeを補間
+    const progress = currentTime / duration;
+    element.style.mixBlendMode = interpolateBlendMode(
+      startMode,
+      targetMode,
+      progress
+    );
+
+    if (currentTime >= duration) {
+      clearInterval(animate);
+    }
+  }, increment);
+
+  // アニメーション終了時に最終的なmix-blend-modeを設定
+  setTimeout(() => {
+    element.style.mixBlendMode = targetMode;
+  }, duration * 1000);
+}
+
+// ブレンドモードを補間する関数
+function interpolateBlendMode(startMode, targetMode, progress) {
+  const blendModes = [
+    "normal",
+    "multiply",
+    "screen",
+    "overlay",
+    "darken",
+    "lighten",
+    "color-dodge",
+    "color-burn",
+    "hard-light",
+    "soft-light",
+    "difference",
+    "exclusion",
+    "hue",
+    "saturation",
+    "color",
+    "luminosity",
+  ];
+
+  const startIndex = blendModes.indexOf(startMode);
+  const targetIndex = blendModes.indexOf(targetMode);
+  const currentIndex =
+    Math.round((targetIndex - startIndex) * progress) + startIndex;
+
+  return blendModes[currentIndex];
+}
+
 //スクロール位置に合わせて動画のフレームを送る
 
 let isScrolling = false;
@@ -9,52 +66,83 @@ let previousScrollY = 0;
 let velocity = 0;
 
 const seekVideoPlayback = (video) => {
-    const oneFrame = 1/15;
-    video.currentTime += oneFrame;
-}
+  const oneFrame = 1 / 30;
+  video.currentTime += oneFrame;
+};
 
 const seekVideoRelative = (video) => {
-    const duration = videoEndQue - videoStartQue;
-    const pageHeight = document.body.scrollHeight;
-    console.log(pageHeight);
-    const posPerTime = duration / pageHeight;
-    video.currentTime = videoStartQue + posPerTime * window.scrollY; 
+  const duration = videoEndQue - videoStartQue;
+  const pageHeight = document.body.scrollHeight;
+  const posPerTime = duration / pageHeight;
+  video.currentTime = videoStartQue + posPerTime * window.scrollY;
+};
+
+const moveTextElement = (element) => {
+    let titleChars = element.textContent;
+    let head = titleChars.slice(-1);
+    let tail = titleChars.slice(0, titleChars.length - 1);
+    element.textContent = head + tail;
+}
+
+const mapNums = (input,a,b,a_,b_) => {
+  let vectA = a - b;
+  let vectA_ = a_ - b_;
+  let ratio = vectA_ / vectA;
+  if(a > b){
+      if(input > a) input = a;
+      if(input < b) input = b;
+  }else{
+      if(input < a) input = a;
+      if(input > b) input = b;
+  }
+  let inputVect = input - a;
+  let outputVect = a_ + inputVect * ratio;
+  return outputVect;
 }
 
 //スクロールのイベントハンドラー
-window.addEventListener("scroll", event => {
-    isScrolling = true;
-})
+window.addEventListener("scroll", (event) => {
+  isScrolling = true;
+});
 
-window.addEventListener("scrollend", envet => {
-    isScrolling = false;
-    const video = document.querySelector("video");
-    video.pause();
-})
+window.addEventListener("scrollend", (envet) => {
+  isScrolling = false;
+  const video = document.querySelector("video");
+  video.pause();
+});
+
+
 
 //ロード後に実行
+//const titleChars = document.querySelector('.eventname2').innerText;
 
 window.onload = () => {
-    const video = document.querySelector('video');
-    video.load();
-    video.currentTime = videoStartQue;
-    console.log(
-        "video playhead = " + video.currentTime + "¥n" + 
-        "isScrolling = " + isScrolling
-    );
-    
-}
+  const video = document.querySelector("video");
+  video.load();
+  video.currentTime = videoStartQue;
+};
 
 setInterval(() => {
-    velocity = window.scrollY - previousScrollY
-    previousScrollY = window.scrollY;
-    const video = document.querySelector("video");
-    if(isScrolling){
-        playbackVelocity = Math.abs(velocity / 10);
-        console.log(playbackVelocity);
-        video.playbackRate = playbackVelocity;
-        if(video.currentTime > videoEndQue) video.currentTime = videoStartQue;
-        video.play();
+  velocity = window.scrollY - previousScrollY;
+  previousScrollY = window.scrollY;
+  const video = document.querySelector("video");
+  const blend_content = document.querySelectorAll(".sp-section");
+
+  if (isScrolling) {
+    playbackVelocity = mapNums(Math.abs(velocity),0,200,0,4);
+    console.log(playbackVelocity);
+    video.playbackRate = playbackVelocity;
+    if (video.currentTime > videoEndQue) video.currentTime = videoStartQue;
+    video.play();
+    for (let i = 0; i < blend_content.length; i++) {
+      blend_content[i].style.mixBlendMode = "difference";
     }
-},50);
+  } else {
+    for (let i = 0; i < blend_content.length; i++) {
+      blend_content[i].style.mixBlendMode = "normal";
+    }
+  }
+}, 50);
+
+let accum = 0;
 
