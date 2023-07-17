@@ -100,6 +100,20 @@ const mapNums = (input,a,b,a_,b_) => {
   return outputVect;
 }
 
+const fitFontSize = (textElement) => {
+  let currentSize = 0;
+  textElement.forEach(element => {
+    if(currentSize < element.innerText.length) currentSize = element.innerText.length;
+    console.log(element.innerText.length);
+  })
+  const windowX = document.documentElement.clientWidth;
+  const ratio = currentSize == 0 ? 0 : windowX / currentSize;
+  textElement.forEach(element => {
+    element.style.fontSize = `${mapNums(ratio,0,windowX,0,100)}vw`;
+  });
+  console.log(mapNums(ratio,0,windowX,0,100));
+}
+
 //スクロールのイベントハンドラー
 window.addEventListener("scroll", (event) => {
   isScrolling = true;
@@ -107,8 +121,6 @@ window.addEventListener("scroll", (event) => {
 
 window.addEventListener("scrollend", (envet) => {
   isScrolling = false;
-  const video = document.querySelector("video");
-  video.pause();
 });
 
 
@@ -141,6 +153,7 @@ setInterval(() => {
     for (let i = 0; i < blend_content.length; i++) {
       blend_content[i].style.mixBlendMode = "normal";
     }
+    video.pause();
   }
 }, 50);
 

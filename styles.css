@@ -59,7 +59,7 @@ body {
 
 .keyvisual-performer {
   position: absolute;
-  bottom: 10vh;
+  bottom: 20vh;
   right: 5vw;
 }
 
@@ -84,15 +84,6 @@ body {
   background-color: rgb(25, 74, 251);
 }
 
-.eventname2 {
-  font-family: 'Nanum Myeongjo', serif;
-  font-size: 3rem;
-  object-fit: cover;
-  position: absolute;
-  top: 20vh;
-  right: 5vw;
-}
-
 .topinfo {
   display: block;
   font-family: "Chivo Mono", monospace;
@@ -105,17 +96,23 @@ body {
 .eventname {
   font-family: 'Nanum Myeongjo', serif;
   font-weight: 1500;
+  font-size: 20vw;
   color: rgb(25, 74, 251);
   background-color: rgba(255, 255, 255, 0);
-  font-size: 18vw;
-  line-height: 80%;
+  line-height: 70%;
 }
 
 .eventname-container{
   position: absolute;
   top: 20%;
-  left: 20%;
   mix-blend-mode: difference;
+}
+
+.flex-align-center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
 }
 
 h1,
@@ -224,15 +221,6 @@ p {
   color: white;
 }
 
-a {
-  font-family: "Chivo Mono", monospace;
-  text-decoration: none;
-  background-color: rgb(25, 74, 251);
-  color: white;
-  font-size: 1.25rem;
-  text-align: left;
-  display: inline;
-}
 
 a:hover {
   background-color: yellow;
@@ -247,16 +235,24 @@ a:hover {
 
 .nav-links {
   position: fixed;
-  z-index: 1;
-  bottom: 3vh;
+  z-index: 2;
+  bottom: 5vh;
   right: 5%;
   display: flex;
   gap: 5px;
+
 }
 
 .nav-elem {
   top: 0;
   left: 0;
+  font-family: "Chivo Mono", monospace;
+  text-decoration: none;
+  background-color: rgb(25, 74, 251);
+  color: white;
+  font-size: 1.25rem;
+  text-align: left;
+  display: inline;
 }
 
 footer {
