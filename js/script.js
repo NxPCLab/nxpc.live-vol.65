@@ -124,12 +124,6 @@ window.addEventListener("scroll", (event) => {
   isScrolling = true;
 });
 
-window.addEventListener("scrollend", (envet) => {
-  isScrolling = false;
-});
-
-
-
 //ロード後に実行
 //const titleChars = document.querySelector('.eventname2').innerText;
 
@@ -148,7 +142,7 @@ setInterval(() => {
   if(window.scrollY < 50 ){
     seekVideoPlayback(video);
     if(titleEnd < video.currentTime) video.currentTime = titleStart;
-    return;
+    isScrolling = false;
   }
 
   if (isScrolling) {
@@ -163,6 +157,7 @@ setInterval(() => {
     for (let i = 0; i < blend_content.length; i++) {
       blend_content[i].style.mixBlendMode = "difference";
     }
+    isScrolling = false;
   } else {
     for (let i = 0; i < blend_content.length; i++) {
       blend_content[i].style.mixBlendMode = "normal";

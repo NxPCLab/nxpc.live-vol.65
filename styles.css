@@ -90,7 +90,7 @@ body {
   display: block;
   line-height: 90%;
   color: white;
-  background-color: black;
+  background-color: rgba(0,0,0,0);
   mix-blend-mode: difference;
 }
 
@@ -197,7 +197,7 @@ p {
 }
 
 .performer-frame {
-  width: 350px;
+  max-width: 350px;
 }
 
 .performer-detail {
@@ -218,9 +218,11 @@ p {
   display: block;
 }
 .performer-detail img {
-  display: inline-block;
-  height: 300px;
+  display: block;
+  height: auto;
+  width: 100%;
   margin-bottom: 30px;
+  object-fit: cover;
 }
 
 .performer-frame h2,
@@ -291,11 +293,12 @@ footer {
 .logo-container img {
   display: inline-block;
   height: 50px;
+  object-fit: cover;
 }
 
 .footer-credit {
   position: absolute;
-  bottom: 30vh;
+  top: 30vh;
   right: 5vw;
 }
 
