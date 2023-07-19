@@ -303,7 +303,7 @@ footer {
   text-align: left;
   background-color: rgb(25, 74, 251);
   color: white;
-  z-index: 3;
+  z-index: 1;
   margin-left: 20px;
   margin-bottom: 20px;
   padding: 10px;
