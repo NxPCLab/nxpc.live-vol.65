@@ -4,7 +4,6 @@ html {
 
 body {
   background-color: white;
-  /*justify-content: center;*/
   margin: 0;
   font-size: 100%;
 }
@@ -19,6 +18,11 @@ body {
   justify-content: center;
   align-items: center;
   z-index: -1;
+}
+
+.theme-color {
+  color: rgb(255, 255, 255);
+  background-color: rgb(25, 74, 251);
 }
 
 .bg-video {
@@ -36,65 +40,80 @@ body {
   top: 0%;
   left: 0%;
   max-width: 800px;
+  margin-top: 5%;
   margin-bottom: 5%;
   padding-left: 20px;
   padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   margin: 0 auto;
-  mix-blend-mode: multiply;
 }
 
 .keyvisual-container {
   position: relative;
-  width: 98vw;
+  width: 100vw;
   height: 100vh;
+  top: 0%;
+  left: 0%;
   border: 0%;
-  padding: 5px;
+}
+
+.keyvisual-performer {
+  position: absolute;
+  bottom: 20vh;
+  right: 5vw;
+}
+
+.sm-footer-performer {
+  display: none;
+}
+
+.keyvisual-performer p {
+  display: block;
+  line-height: 90%;
+  color: white;
+  background-color: black;
   mix-blend-mode: difference;
 }
 
 .toptitle {
-  display: inline-block;
-  font: 1em sans-serif;
-  font-family: 'Nanum Myeongjo', serif;
-  font-weight: 900;
+  display: block;
+  font-family: "Chivo Mono", monospace;
+  font-weight: 1500;
   font-size: 1rem;
   color: white;
   background-color: rgb(25, 74, 251);
-  position: absolute;
-  top: 5%;
-  left: 0%;
+}
+
+.topinfo {
+  display: block;
+  font-family: "Chivo Mono", monospace;
+  font-weight: 900;
+  font-size: 1rem;
+  color: rgb(255, 255, 255);
+  background-color: rgb(25, 74, 251);
 }
 
 .eventname {
   font-family: 'Nanum Myeongjo', serif;
-  font-weight: 100;
+  font-weight: 1500;
+  font-size: 20vw;
   color: rgb(25, 74, 251);
   background-color: rgba(255, 255, 255, 0);
-  font-size: 12vw;
+  line-height: 70%;
 }
 
-#pox {
+.eventname-container {
   position: absolute;
-  top: 15vh;
-  left: 5%;
+  top: 20%;
+  mix-blend-mode: difference;
 }
 
-#nx {
-  position: absolute;
-  bottom: 15vh;
-  left: 5%;
-}
-
-.topinfo {
-  display: inline-block;
-  font-family: "Chivo Mono", monospace;
-  font-weight: 900;
-  font-size: 1.5rem;
-  color: rgb(25, 74, 251);
-  background-color: rgba(255, 255, 255, 0);
-  position: absolute;
-  right: 5%;
-  bottom: 30%;
+.flex-align-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
 }
 
 h1,
@@ -109,20 +128,16 @@ h4 {
 
 p,
 span {
-  background-color: blue;
   color: white;
   display: block;
-  mix-blend-mode: normal;
 }
 
 h1 {
-  background-color: blue;
   color: white;
   font-size: 2rem;
 }
 
 h2 {
-  background-color: blue;
   color: white;
   font-size: 1.5rem;
 }
@@ -134,18 +149,18 @@ h3 {
 }
 
 p {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-family: "Chivo Mono", monospace;
 }
 
 .external-link {
   display: inline-block;
   background-color: yellow;
-  color: blue;
+  color: rgb(25, 74, 251);
 }
 
 .external-link:hover {
-  background-color: blue;
+  background-color: rgb(25, 74, 251);
   color: white;
 }
 
@@ -188,6 +203,9 @@ p {
   bottom: 0;
   right: 0;
   width: 90%;
+  background-color: white;
+  color: black;
+  display: block;
 }
 
 .performer-detail img {
@@ -203,23 +221,13 @@ p {
 }
 
 .performer-frame h2 {
-  background-color: blue;
   color: white;
 }
 
-a {
-  font-family: "Chivo Mono", monospace;
-  text-decoration: none;
-  color: white;
-  font-size: 1.25rem;
-  text-align: left;
-  display: inline;
-  background-color: blue;
-}
 
 a:hover {
   background-color: yellow;
-  color: blue;
+  color: rgb(25, 74, 251);
 }
 
 .map {
@@ -230,21 +238,51 @@ a:hover {
 
 .nav-links {
   position: fixed;
-  z-index: 1;
-  top: calc(100vh - 10%);
+  z-index: 2;
+  bottom: 5vh;
   right: 5%;
   display: flex;
   gap: 5px;
+
 }
 
 .nav-elem {
   top: 0;
   left: 0;
+  font-family: "Chivo Mono", monospace;
+  text-decoration: none;
+  background-color: rgb(25, 74, 251);
+  color: white;
+  font-size: 1.25rem;
+  text-align: left;
+  display: inline;
 }
 
 footer {
-  height: 100px;
-  width: 100%;
-  background-color: blue;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+}
+
+.footer-bg {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(25, 74, 251);
+  position: relative;
+}
+
+.footer-credit {
+  position: absolute;
+  text-align: right;
+  bottom: 30vh;
+  right: 5vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-credit p {
+  display: inline;
+  background-color: rgb(25, 74, 251);
+  color: white;
   z-index: 3;
 }
