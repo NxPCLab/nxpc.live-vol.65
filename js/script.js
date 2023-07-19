@@ -116,7 +116,6 @@ const fitFontSize = (textElement) => {
   textElement.forEach(element => {
     element.style.fontSize = `${mapNums(ratio,0,windowX,0,100)}vw`;
   });
-  console.log(mapNums(ratio,0,windowX,0,100));
 }
 
 //スクロールのイベントハンドラー
@@ -139,10 +138,16 @@ setInterval(() => {
   const video = document.querySelector("video");
   const blend_content = document.querySelectorAll(".sp-section");
 
+  if (velocity == 0){
+    accum ++;
+    if(accum > 3) isScrolling = false;
+  }else{
+    accum = 0;
+  }  
+
   if(window.scrollY < 50 ){
     seekVideoPlayback(video);
     if(titleEnd < video.currentTime) video.currentTime = titleStart;
-    isScrolling = false;
   }
 
   if (isScrolling) {
@@ -157,7 +162,6 @@ setInterval(() => {
     for (let i = 0; i < blend_content.length; i++) {
       blend_content[i].style.mixBlendMode = "difference";
     }
-    isScrolling = false;
   } else {
     for (let i = 0; i < blend_content.length; i++) {
       blend_content[i].style.mixBlendMode = "normal";
