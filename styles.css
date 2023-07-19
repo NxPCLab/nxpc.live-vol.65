@@ -1,6 +1,7 @@
-html{
+html {
   overflow-x: hidden;
 }
+
 body {
   background-color: white;
   margin: 0;
@@ -19,12 +20,12 @@ body {
   z-index: -1;
 }
 
-.theme-color{
-  color: rgb(255,255,255);
+.theme-color {
+  color: rgb(255, 255, 255);
   background-color: rgb(25, 74, 251);
 }
 
-.bg-video{
+.bg-video {
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -89,7 +90,7 @@ body {
   font-family: "Chivo Mono", monospace;
   font-weight: 900;
   font-size: 1rem;
-  color: rgb(255,255,255);
+  color: rgb(255, 255, 255);
   background-color: rgb(25, 74, 251);
 }
 
@@ -102,13 +103,13 @@ body {
   line-height: 70%;
 }
 
-.eventname-container{
+.eventname-container {
   position: absolute;
   top: 20%;
   mix-blend-mode: difference;
 }
 
-.flex-align-center{
+.flex-align-center {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -157,6 +158,7 @@ p {
   background-color: yellow;
   color: rgb(25, 74, 251);
 }
+
 .external-link:hover {
   background-color: rgb(25, 74, 251);
   color: white;
@@ -195,7 +197,7 @@ p {
   flex-direction: row;
 }
 
-.performer-detail p{
+.performer-detail p {
   position: absolute;
   text-align: right;
   bottom: 0;
@@ -205,6 +207,7 @@ p {
   color: black;
   display: block;
 }
+
 .performer-detail img {
   display: inline-block;
   height: 300px;
@@ -261,7 +264,7 @@ footer {
   position: relative;
 }
 
-.footer-bg{
+.footer-bg {
   height: 100vh;
   width: 100vw;
   background-color: rgb(25, 74, 251);
@@ -277,10 +280,9 @@ footer {
   flex-direction: column;
 }
 
-.footer-credit p{
+.footer-credit p {
   display: inline;
   background-color: rgb(25, 74, 251);
   color: white;
   z-index: 3;
 }
-
