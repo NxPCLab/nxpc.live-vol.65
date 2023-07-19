@@ -1,3 +1,4 @@
+
 function animateMixBlendMode(element, targetMode, duration) {
   const startMode = window.getComputedStyle(element).mixBlendMode;
 
@@ -59,8 +60,11 @@ function interpolateBlendMode(startMode, targetMode, progress) {
 
 let isScrolling = false;
 let pageY = 0;
-const videoStartQue = 8.25784;
-const videoEndQue = 14.968927;
+const videoStartQue = 4.3309;
+const videoEndQue = 20;
+
+const titleStart = 0.35663;
+const titleEnd = 3.390038;
 
 let previousScrollY = 0;
 let velocity = 0;
@@ -75,6 +79,7 @@ const seekVideoRelative = (video) => {
   const pageHeight = document.body.scrollHeight;
   const posPerTime = duration / pageHeight;
   video.currentTime = videoStartQue + posPerTime * window.scrollY;
+  console.log(video.currentTime);
 };
 
 const moveTextElement = (element) => {
@@ -140,12 +145,21 @@ setInterval(() => {
   const video = document.querySelector("video");
   const blend_content = document.querySelectorAll(".sp-section");
 
+  if(window.scrollY < 50 ){
+    seekVideoPlayback(video);
+    if(titleEnd < video.currentTime) video.currentTime = titleStart;
+    return;
+  }
+
   if (isScrolling) {
+    /*
     playbackVelocity = mapNums(Math.abs(velocity),0,200,0,4);
     console.log(playbackVelocity);
     video.playbackRate = playbackVelocity;
     if (video.currentTime > videoEndQue) video.currentTime = videoStartQue;
     video.play();
+    */
+    seekVideoRelative(video);
     for (let i = 0; i < blend_content.length; i++) {
       blend_content[i].style.mixBlendMode = "difference";
     }
@@ -158,4 +172,5 @@ setInterval(() => {
 }, 50);
 
 let accum = 0;
+
 
